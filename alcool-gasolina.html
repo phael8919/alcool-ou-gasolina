@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Álcool ou Gasolina?</title>
+	<style type="text/css">
+	 	*{
+	 		margin: 0;
+	 		padding: 0;
+	 		font-family: tahoma;
+	 		font-size: 18px;
+	 		color: #363636;
+	 		transition-duration: 0.8s;
+	 	}
+
+	 	.container{
+	 		width: 480px;
+	 		height: 370px;	 		
+	 		background: #EEE9E9;
+	 		border-radius: 5px;
+	 		padding: 10px;
+	 		margin: 30px auto auto auto;
+	 		border: solid 1px #9C9C9C;
+	 	}
+
+	 	.container p{
+	 		font-size: 25px;
+	 		text-align: center;
+	 		padding: 10px 0 30px 0;
+	 		font-weight: bold;
+	 	}
+
+	 	.container label{
+	 		padding: 10px;
+	 		margin-top: 20px;
+	 		margin-bottom: 20px;
+	 	}
+
+	 	.container .alcool input{
+	 		margin-bottom: 20px;
+	 		margin-left: 20px;
+	 		padding: 10px;
+	 		width: 415px;
+	 		border-radius: 5px;
+	 		border: solid 1px #9C9C9C;
+	 	}
+
+	 	.container .gasolina input{
+	 		margin-bottom: 20px;
+	 		margin-left: 20px;
+	 		padding: 10px;
+	 		width: 415px;
+	 		border-radius: 5px;
+	 		border: solid 1px #9C9C9C;
+	 	}
+
+	 	.botoes{
+	 		display: flex;
+	 		flex-direction: row;
+	 		justify-content: center;
+	 		align-items: center;	 		
+	 		margin-left: auto;    
+	 		margin-right: auto;
+	 	}
+
+	 	.botoes #calcular{
+	 		margin-right: 20px;
+	 		height: 40px;
+	 		width: 100px;
+	 		background: #5CACEE;
+	 		border: none;
+	 		border-radius: 5px;
+	 		color: white;
+	 		cursor: pointer;
+	 	}
+
+	 	.botoes #calcular:hover{
+	 		background: #104E8B;
+	 	}
+
+	 	.botoes #limpar{
+	 		
+	 		height: 40px;
+	 		width: 100px;
+	 		background: #00CED1;
+	 		border: none;
+	 		border-radius: 5px;
+	 		color: white;
+	 		cursor: pointer;
+	 	}
+
+	 	.botoes #limpar:hover{
+	 		background: #00868B;
+	 	}
+
+	 	.container .resultado input{
+	 		background: #00BFFF;
+	 		color: #fff;
+	 		margin-bottom: 20px;
+	 		margin-left: 20px;
+	 		padding: 10px;
+	 		width: 415px;
+	 		border-radius: 5px;
+	 		border: solid 2px #1E90FF;
+	 	}
+
+	 	@media (max-width: 540px){
+	 		*{
+	 			font-size: 16px;
+	 		}
+	 		.container{
+	 			width: 88%;
+	 			height: 100%;
+	 			margin-right: 8px;
+	 		}
+ 			#alcool, #gasolina, #resultado{
+ 				width: 85%; 			
+ 			}
+	 		
+	 	}
+	</style>
+</head>
+<body>
+	<div class="container">
+		<p>É melhor utilizar Álcool ou Gasolina?</p>
+		<div class="alcool">
+			<label>
+				Preço do Álcool:
+				<br>
+				<input type="text" id="alcool" placeholder="Digite o preço do álcool (ex:2.20)" required="">
+			</label>
+		</div>
+
+		<div class="gasolina">
+			<label>
+				Preço da Gasolina:
+				<br>
+				<input type="text" id="gasolina" placeholder="Digite o preço da Gasolina (ex:3.50)" required="">
+			</label>
+		</div>
+
+		<div class="botoes">
+			<span>
+				<input type="button" onclick="calcular()" value="Calcular" id="calcular">
+			</span>
+			<span>
+				<input type="reset" onclick="limpar()" value="Limpar" id="limpar"></button>
+			</span>
+		</div>
+
+		<div class="resultado">
+			<label>				
+				<br>
+				<input type="text" disabled="" id="resultado" placeholder="Resultado" >
+			</label>
+		</div>
+		
+		<script type="text/javascript">
+			function limpar(){
+				document.getElementById("alcool").value = ""
+				document.getElementById("gasolina").value = ""
+				document.getElementById("resultado").value = ""
+				document.getElementById("alcool").focus()
+			}
+
+			function calcular(){
+				let alcool = parseFloat(document.getElementById("alcool").value)
+				let gasolina = parseFloat(document.getElementById("gasolina").value)
+
+				let razao = parseFloat(alcool/gasolina).toFixed(3);				
+
+				if (razao == "NaN"){
+					alert("Digite somente valores válidos!")
+					return limpar()
+				}
+				else if (typeof(alcool) != "number" || typeof(gasolina) != "number"){
+					alert("Digite somente valores válidos!")
+					return limpar()
+				} 
+				else if(alcool == 0 || gasolina == 0){
+					alert("Digite somente valores válidos!")
+					return limpar()
+				}				
+				else if(razao <= 0.7){
+					return document.getElementById("resultado").value = "O resultado é: " + razao + " - A melhor opção é o Álcool"
+				}
+				else{
+					return document.getElementById("resultado").value = "O resultado é: " + razao + " - A melhor opção é a Gasolina"
+				}
+				
+				
+			}
+
+			
+
+		</script>
+	</div>
+</body>
+</html>
