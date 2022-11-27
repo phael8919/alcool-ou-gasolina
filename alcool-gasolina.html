@@ -111,7 +111,22 @@
 	 		.container{
 	 			width: 88%;
 	 			height: 100%;
-	 			margin-right: 8px;
+	 			margin-right: 18px;
+	 		}
+ 			#alcool, #gasolina, #resultado{
+ 				width: 85%; 			
+ 			}
+	 		
+	 	}
+
+	 	@media (max-width: 320px){
+	 		*{
+	 			font-size: 12px;
+	 		}
+	 		.container{
+	 			width: 88%;
+	 			height: 100%;
+	 			margin-right: 9px;
 	 		}
  			#alcool, #gasolina, #resultado{
  				width: 85%; 			
@@ -127,7 +142,7 @@
 			<label>
 				Preço do Álcool:
 				<br>
-				<input type="text" id="alcool" placeholder="Digite o preço do álcool (ex:2.20)" required="">
+				<input type="text" id="alcool" placeholder="Digite o preço do álcool (ex:2,20)" required="">
 			</label>
 		</div>
 
@@ -135,7 +150,7 @@
 			<label>
 				Preço da Gasolina:
 				<br>
-				<input type="text" id="gasolina" placeholder="Digite o preço da Gasolina (ex:3.50)" required="">
+				<input type="text" id="gasolina" placeholder="Digite o preço da Gasolina (ex:3,50)" required="">
 			</label>
 		</div>
 
@@ -164,8 +179,9 @@
 			}
 
 			function calcular(){
-				let alcool = parseFloat(document.getElementById("alcool").value)
-				let gasolina = parseFloat(document.getElementById("gasolina").value)
+				let alcool = parseFloat(document.getElementById("alcool").value.replace(',','.'))
+				let gasolina = parseFloat(document.getElementById("gasolina").value.replace(',','.'))
+
 
 				let razao = parseFloat(alcool/gasolina).toFixed(3);				
 
