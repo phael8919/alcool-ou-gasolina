@@ -1,0 +1,120 @@
+
+	<div class="container" style="width: 380px;
+	 		height: 600px;	 		
+	 		background: #EEE9E9;
+	 		border-radius: 5px;
+	 		padding: 10px;
+	 		margin: 30px auto auto auto;
+	 		border: solid 1px #9C9C9C;
+	 		font-family: tahoma;
+	 		font-size: 16px;
+	 		color: #363636;
+	 		transition-duration: 0.8s;
+	 		
+	 		">
+		<p style="font-size: 25px;
+	 		text-align: center;
+	 		padding: 10px 0 30px 0;
+	 		font-weight: bold;">É melhor utilizar Álcool ou Gasolina?</p>
+		<div class="alcool" style="margin-bottom: 20px;
+	 		margin-left: 20px;
+	 		padding: 10px;
+	 		width: 320px;
+	 		border-radius: 5px;
+	 		border: solid 1px #9C9C9C;">
+			<label>
+				Preço do Álcool:
+				<br>
+				<input type="text" id="alcool" placeholder="Digite o preço (ex:2,20)" required="" style="width:300px;">
+			</label>
+		</div>
+
+		<div class="gasolina" style="margin-bottom: 20px;
+	 		margin-left: 20px;
+	 		padding: 10px;
+	 		width: 320px;
+	 		border-radius: 5px;
+	 		border: solid 1px #9C9C9C;">
+			<label>
+				Preço da Gasolina:
+				<br>
+				<input type="text" id="gasolina" placeholder="Digite o preço (ex:3,50)" required="" style="width:300px;">
+			</label>
+		</div>
+
+		<div class="botoes" style="display: flex;
+	 		flex-direction: row;
+	 		justify-content: center;
+	 		align-items: center;	 		
+	 		margin-left: auto;    
+	 		margin-right: auto;">
+			<span>
+				<input type="button" onclick="calcular()" value="Calcular" id="calcular" style="margin-right: 10px;
+	 		width: 130px;
+	 		height:50px;
+	 		text-align:center;
+	 	    padding-right: -95px;
+	 	    padding-left: 28px;
+	 		color: white;
+	 		cursor: pointer;">
+			</span>
+			<span>
+				<input type="reset" onclick="limpar()" value="Limpar" id="limpar"></button>
+			</span>
+		</div>
+
+		<div class="resultado" style="">
+			<label>				
+				<br>
+				<input type="text" disabled="" id="resultado" placeholder="Resultado" style="background: #1e90ff;
+	 		color: #fff;
+	 		margin-bottom: 20px;
+	 		margin-left: 20px;
+	 		padding: 10px;
+	 		width: 320px;
+	 		text-align:center;
+	 		border-radius: 5px;
+	 	">
+			</label>
+		</div>
+		
+		<script type="text/javascript">
+			function limpar(){
+				document.getElementById("alcool").value = ""
+				document.getElementById("gasolina").value = ""
+				document.getElementById("resultado").value = ""
+				document.getElementById("alcool").focus()
+			}
+
+			function calcular(){
+				let alcool = parseFloat(document.getElementById("alcool").value.replace(',','.'))
+				let gasolina = parseFloat(document.getElementById("gasolina").value.replace(',','.'))
+
+				let razao = parseFloat(alcool/gasolina).toFixed(3);				
+
+				if (razao == "NaN"){
+					alert("Digite somente valores válidos!")
+					return limpar()
+				}
+				else if (typeof(alcool) != "number" || typeof(gasolina) != "number"){
+					alert("Digite somente valores válidos!")
+					return limpar()
+				} 
+				else if(alcool == 0 || gasolina == 0){
+					alert("Digite somente valores válidos!")
+					return limpar()
+				}				
+				else if(razao <= 0.7){
+					return document.getElementById("resultado").value = "O resultado é: " + razao + " - Álcool"
+				}
+				else{
+					return document.getElementById("resultado").value = "O resultado é: " + razao + " - Gasolina"
+				}
+				
+				
+			}
+
+			
+
+		</script>
+	</div>
